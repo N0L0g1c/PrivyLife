@@ -1,0 +1,12 @@
+node_modules/
+dist/
+release/
+*.local
+.DS_Store
+Thumbs.db
+
+# Signing keys — never commit
+*.pfx
+*.p12
+*.pem
+*.key
