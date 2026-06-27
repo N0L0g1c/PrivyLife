@@ -18,7 +18,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2.5 group">
             <div className="w-9 h-9 rounded-xl overflow-hidden ring-1 ring-emerald-500/30 pulse-glow">
-              <img src="/icon.png" alt="PrivyLife" className="w-full h-full object-cover" />
+              <img src={`${import.meta.env.BASE_URL}icon.png`} alt="PrivyLife" className="w-full h-full object-cover" />
             </div>
             <div>
               <span className="font-bold text-lg tracking-tight group-hover:text-emerald-400 transition-colors">
