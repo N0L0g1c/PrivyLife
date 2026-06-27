@@ -31,11 +31,22 @@ npm install
 npm run electron:dev
 ```
 
+If you already have the project elsewhere on Windows:
+
+```powershell
+cd "C:\Users\Username\path\to\PrivyLife"
+npm install
+npm run electron:dev
+```
+
 Local desktop build:
 
 ```powershell
-npm run electron:build:win    # Windows
-npm run electron:build:linux  # Linux
+cd "C:\Users\Username\path\to\PrivyLife"   # Windows
+npm run electron:build:win
+
+cd ~/path/to/PrivyLife                      # Linux
+npm run electron:build:linux
 ```
 
 Output goes to the `release/` folder.
