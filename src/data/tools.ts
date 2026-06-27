@@ -17,7 +17,8 @@ export type ToolCategory =
   | "2fa"
   | "firewall"
   | "os"
-  | "analytics";
+  | "analytics"
+  | "studio";
 
 export interface ToolLink {
   label: string;
@@ -35,6 +36,7 @@ export interface PrivacyTool {
   openSource: boolean;
   freeTier: boolean;
   recommended: boolean;
+  comingSoon?: boolean;
   pros: string[];
   cons: string[];
   links: {
@@ -159,6 +161,13 @@ export const categories: CategoryInfo[] = [
     icon: "📊",
     description: "Stop apps and sites from building behavior profiles.",
     whyItMatters: "Analytics SDKs in apps track usage patterns, device info, and location — often without clear consent.",
+  },
+  {
+    id: "studio",
+    name: "VassDev Studio",
+    icon: "🏠",
+    description: "Open-source privacy tools built by Vassbrekke AS — the team behind PrivyLife.",
+    whyItMatters: "These are free tools from the same studio, designed to plug directly into your privacy stack on Windows, Linux, and mobile.",
   },
 ];
 
@@ -972,6 +981,94 @@ export const privacyTools: PrivacyTool[] = [
     },
     tags: ["android", "trackers", "audit"],
   },
+
+  // VASSDEV STUDIO
+  {
+    id: "vassdev-privylife",
+    name: "PrivyLife",
+    tagline: "This app — your privacy hub in one place",
+    description: "PrivyLife is a VassDev open-source desktop app that helps you discover, compare, and link to privacy-respecting tools. You're using it right now.",
+    category: "studio",
+    platforms: ["windows", "linux"],
+    privacyLevel: "essential",
+    openSource: true,
+    freeTier: true,
+    recommended: true,
+    pros: ["Curated privacy tool directory", "Personalized stack wizard", "100% local — no tracking", "Direct download links"],
+    cons: ["Desktop only (Windows & Linux)", "Curates tools — doesn't replace them"],
+    links: {
+      website: "https://vassbrekke.no/vassdev/",
+      download: [
+        { label: "GitHub Releases", url: "https://github.com/N0L0g1c/PrivyLife/releases" },
+      ],
+      github: "https://github.com/N0L0g1c/PrivyLife",
+    },
+    tags: ["vassdev", "studio", "hub", "desktop"],
+  },
+  {
+    id: "vassdev-windows-privacy",
+    name: "Windows 11 Privacy Tool",
+    tagline: "Open-source GUI & CLI to harden Windows 10/11",
+    description: "A Python tool from VassDev that enhances privacy on Windows 10 and 11. Choose between a graphical interface or command line to reduce telemetry and tighten system privacy settings.",
+    category: "studio",
+    platforms: ["windows"],
+    privacyLevel: "essential",
+    openSource: true,
+    freeTier: true,
+    recommended: true,
+    pros: ["GUI and CLI modes", "Built for Windows 10/11", "Open source on GitHub", "Free from VassDev"],
+    cons: ["Windows only", "Review changes before applying", "May require re-running after major updates"],
+    links: {
+      website: "https://vassbrekke.no/vassdev/",
+      download: [
+        { label: "GitHub", url: "https://github.com/N0L0g1c/Windows-11-Privacy-Enhancing-tool-GUI-and-CLI" },
+      ],
+      github: "https://github.com/N0L0g1c/Windows-11-Privacy-Enhancing-tool-GUI-and-CLI",
+    },
+    tags: ["vassdev", "studio", "windows", "telemetry", "hardening"],
+  },
+  {
+    id: "vassdev-security-hardening",
+    name: "Security Hardening",
+    tagline: "Shell scripts to secure a fresh install",
+    description: "VassDev's open-source shell scripts give you a practical starting point for security hardening on a new system — a sensible first step before layering on other privacy tools.",
+    category: "studio",
+    platforms: ["linux", "windows"],
+    privacyLevel: "recommended",
+    openSource: true,
+    freeTier: true,
+    recommended: true,
+    pros: ["Great for fresh installs", "Open source", "Lightweight shell scripts", "Pairs well with other hardening tools"],
+    cons: ["Not a full hardening suite alone", "Review scripts before running", "Linux-focused workflows"],
+    links: {
+      website: "https://vassbrekke.no/vassdev/",
+      download: [
+        { label: "GitHub", url: "https://github.com/N0L0g1c/SecurityHardening" },
+      ],
+      github: "https://github.com/N0L0g1c/SecurityHardening",
+    },
+    tags: ["vassdev", "studio", "hardening", "scripts"],
+  },
+  {
+    id: "vassdev-deepcleaner",
+    name: "DeepCleaner",
+    tagline: "Free phone cleaner — cache, junk & old media",
+    description: "Coming soon from VassDev Mobile Studio. DeepCleaner safely clears cache, browser junk, app logs, and old media on Android and iOS — reducing data trails left on your phone.",
+    category: "studio",
+    platforms: ["android", "ios"],
+    privacyLevel: "recommended",
+    openSource: false,
+    freeTier: true,
+    recommended: false,
+    comingSoon: true,
+    pros: ["Safe & thorough cleaning", "Targets browser junk and app logs", "Free mobile tool", "From VassDev Mobile Studio"],
+    cons: ["Coming soon — not yet released", "Mobile only"],
+    links: {
+      website: "https://vassbrekke.no/vassdev/",
+      docs: "https://vassbrekke.no/vassdev/",
+    },
+    tags: ["vassdev", "studio", "mobile", "cleaner", "coming-soon"],
+  },
 ];
 
 export function getCategoryInfo(id: ToolCategory): CategoryInfo | undefined {
@@ -984,6 +1081,10 @@ export function getToolsByCategory(category: ToolCategory): PrivacyTool[] {
 
 export function getRecommendedTools(): PrivacyTool[] {
   return privacyTools.filter((t) => t.recommended);
+}
+
+export function getStudioTools(): PrivacyTool[] {
+  return privacyTools.filter((t) => t.tags.includes("vassdev"));
 }
 
 export function getToolById(id: string): PrivacyTool | undefined {

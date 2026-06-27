@@ -27,6 +27,16 @@ export default function ToolCard({ tool, reason, showCategory }: ToolCardProps) 
                 Recommended
               </span>
             )}
+            {tool.comingSoon && (
+              <span className="px-2 py-0.5 text-xs rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/20">
+                Coming Soon
+              </span>
+            )}
+            {tool.tags.includes("vassdev") && (
+              <span className="px-2 py-0.5 text-xs rounded-full bg-cyan-500/15 text-cyan-400 border border-cyan-500/20">
+                VassDev
+              </span>
+            )}
           </div>
           <p className="text-sm text-emerald-400/80">{tool.tagline}</p>
         </div>
@@ -65,7 +75,7 @@ export default function ToolCard({ tool, reason, showCategory }: ToolCardProps) 
           onClick={() => openExternal(tool.links.website)}
           className="flex-1 px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-semibold text-sm transition-colors"
         >
-          Visit Website →
+          {tool.comingSoon ? "Learn More →" : tool.tags.includes("vassdev") ? "VassDev →" : "Visit Website →"}
         </button>
         <Link
           to={`/tool/${tool.id}`}

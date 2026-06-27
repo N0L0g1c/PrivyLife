@@ -19,7 +19,7 @@ const priorityCategoryMap: Record<string, ToolCategory[]> = {
   identity: ["password", "2fa"],
   network: ["vpn", "dns", "firewall"],
   files: ["encryption", "sync", "notes"],
-  system: ["os", "analytics"],
+  system: ["os", "analytics", "studio"],
 };
 
 export function getWizardRecommendations(answers: WizardAnswers): WizardRecommendation[] {
@@ -54,9 +54,10 @@ export function getWizardRecommendations(answers: WizardAnswers): WizardRecommen
   if (platform === "windows") {
     add("firewall", "simplewall", "simplewall reveals and blocks unwanted Windows app connections.");
     add("analytics", "privacy-sexy", "Run privacy.sexy scripts to disable Windows telemetry.");
-    add("os", "windows-hardening", "Harden Windows with O&O ShutUp10++ alongside your other tools.");
+    add("studio", "vassdev-windows-privacy", "VassDev's open-source tool hardens Windows 10/11 with GUI or CLI.");
   } else if (platform === "linux") {
     add("firewall", "opensnitch", "OpenSnitch gives you per-app network control on Linux.");
+    add("studio", "vassdev-security-hardening", "VassDev shell scripts are a solid starting point on a fresh Linux install.");
   }
 
   // Priority-based additions
@@ -87,6 +88,10 @@ export function getWizardRecommendations(answers: WizardAnswers): WizardRecommen
           reason: platform === "linux" ? "Linux Mint is a privacy-respecting daily driver." : "Harden Windows telemetry settings.",
         },
         analytics: { id: "privacy-sexy", reason: "Automated scripts to reduce system telemetry." },
+        studio: {
+          id: platform === "windows" ? "vassdev-windows-privacy" : "vassdev-security-hardening",
+          reason: "VassDev studio tools are built to complement your privacy stack.",
+        },
       };
 
       const pick = toolMap[cat];

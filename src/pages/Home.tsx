@@ -1,18 +1,30 @@
 import { Link } from "react-router-dom";
-import { categories, getRecommendedTools, privacyTools } from "@/data/tools";
+import { categories, getRecommendedTools, getStudioTools, privacyTools } from "@/data/tools";
 import ToolCard from "@/components/ToolCard";
 import { CategoryGrid, QuickSearch } from "@/components/SearchBar";
+import { openExternal } from "@/hooks/useStorage";
 
 export default function Home() {
-  const recommended = getRecommendedTools().slice(0, 6);
+  const recommended = getRecommendedTools().filter((t) => !t.tags.includes("vassdev")).slice(0, 6);
+  const studioTools = getStudioTools();
 
   return (
     <div className="hero-glow">
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-4 pt-16 pb-12 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-emerald-400 mb-6">
-          <span>🛡️</span>
-          <span>Windows & Linux · 100% local · No tracking</span>
+        <div className="inline-flex flex-wrap items-center justify-center gap-2 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm text-emerald-400">
+            <span>🛡️</span>
+            <span>Windows & Linux · 100% local · No tracking</span>
+          </div>
+          <button
+            type="button"
+            onClick={() => openExternal("https://vassbrekke.no/vassdev/")}
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full glass text-sm text-cyan-400 border border-cyan-500/20 hover:border-cyan-500/40 hover:text-cyan-300 transition-colors"
+          >
+            <span>🏠</span>
+            <span>A VassDev app</span>
+          </button>
         </div>
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
           Your privacy stack,
@@ -66,6 +78,34 @@ export default function Home() {
         <h2 className="text-2xl font-bold mb-2">Browse by Category</h2>
         <p className="text-slate-400 mb-6">Every area of your digital life, covered.</p>
         <CategoryGrid />
+      </section>
+
+      {/* VassDev Studio */}
+      <section className="max-w-6xl mx-auto px-4 pb-16">
+        <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
+          <div>
+            <h2 className="text-2xl font-bold">From VassDev Studio</h2>
+            <p className="text-slate-400 mt-1">
+              Open-source privacy tools by{" "}
+              <button
+                type="button"
+                onClick={() => openExternal("https://vassbrekke.no/vassdev/")}
+                className="text-emerald-400 hover:text-emerald-300 underline-offset-2 hover:underline"
+              >
+                Vassbrekke AS
+              </button>
+              — built to fit your stack
+            </p>
+          </div>
+          <Link to="/browse/studio" className="text-emerald-400 hover:text-emerald-300 text-sm font-medium">
+            View studio →
+          </Link>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {studioTools.map((tool) => (
+            <ToolCard key={tool.id} tool={tool} />
+          ))}
+        </div>
       </section>
 
       {/* Recommended */}

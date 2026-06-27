@@ -23,7 +23,7 @@ function createWindow() {
     height: 800,
     minWidth: 900,
     minHeight: 600,
-    title: "PrivyLife — Privacy Hub",
+    title: "PrivyLife — Privacy Hub by VassDev",
     icon: icon.isEmpty() ? undefined : icon,
     backgroundColor: "#0a0f1a",
     show: false,

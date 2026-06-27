@@ -1,5 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import { useSavedTools } from "@/hooks/useStorage";
+import { useSavedTools, openExternal } from "@/hooks/useStorage";
+
+const VASSDEV_URL = "https://vassbrekke.no/vassdev/";
 
 const navItems = [
   { path: "/", label: "Home", icon: "🏠" },
@@ -24,8 +26,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <span className="font-bold text-lg tracking-tight group-hover:text-emerald-400 transition-colors">
                 PrivyLife
               </span>
-              <span className="hidden sm:block text-xs text-[var(--color-muted)]">
-                Privacy Hub
+              <span className="block text-[10px] sm:text-xs text-[var(--color-muted)]">
+                Privacy Hub · by{" "}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    openExternal(VASSDEV_URL);
+                  }}
+                  className="text-cyan-400/90 hover:text-cyan-300 transition-colors"
+                >
+                  VassDev
+                </button>
               </span>
             </div>
           </Link>
@@ -64,7 +76,21 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <footer className="border-t border-[var(--color-border)] py-8 mt-auto">
         <div className="max-w-6xl mx-auto px-4 text-center text-sm text-[var(--color-muted)]">
-          <p>
+          <p className="flex flex-wrap items-center justify-center gap-1.5">
+            <span>Made with</span>
+            <span className="text-emerald-400" aria-hidden="true">🛡️</span>
+            <span>by</span>
+            <button
+              type="button"
+              onClick={() => openExternal(VASSDEV_URL)}
+              className="font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
+            >
+              VassDev
+            </button>
+            <span className="text-slate-600">·</span>
+            <span>Vassbrekke AS</span>
+          </p>
+          <p className="mt-3">
             PrivyLife curates open-source and privacy-respecting tools. We don't track you — preferences are stored locally only.
           </p>
           <p className="mt-2 text-xs">

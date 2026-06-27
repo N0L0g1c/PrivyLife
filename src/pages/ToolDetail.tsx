@@ -38,6 +38,16 @@ export default function ToolDetail() {
                     ★ Recommended
                   </span>
                 )}
+                {tool.comingSoon && (
+                  <span className="px-3 py-1 text-xs rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/20">
+                    Coming Soon
+                  </span>
+                )}
+                {tool.tags.includes("vassdev") && (
+                  <span className="px-3 py-1 text-xs rounded-full bg-cyan-500/15 text-cyan-400 border border-cyan-500/20">
+                    VassDev Studio
+                  </span>
+                )}
               </div>
               <p className="text-lg text-emerald-400/90">{tool.tagline}</p>
             </div>
