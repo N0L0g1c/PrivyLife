@@ -31,7 +31,7 @@ jobs:
         run: npm ci
 
       - name: Build Windows installers
-        run: npm run electron:build:win -- --publish never
+        run: npm run electron:build:win
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: false
 
@@ -66,7 +66,7 @@ jobs:
         run: npm ci
 
       - name: Build Linux packages
-        run: npm run electron:build:linux -- --publish never
+        run: npm run electron:build:linux
 
       - name: Upload Linux artifacts
         uses: actions/upload-artifact@v4
