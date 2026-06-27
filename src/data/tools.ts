@@ -1006,6 +1006,38 @@ export const privacyTools: PrivacyTool[] = [
     tags: ["vassdev", "studio", "hub", "desktop"],
   },
   {
+    id: "vassdev-privyfile",
+    name: "PrivyFile",
+    tagline: "Sanitize files before you share or delete them",
+    description: "A VassDev open-source desktop app that removes metadata from photos, documents, and videos — and securely shreds sensitive files. All processing happens locally with zero telemetry.",
+    category: "studio",
+    platforms: ["windows", "linux", "macos"],
+    privacyLevel: "essential",
+    openSource: true,
+    freeTier: true,
+    recommended: true,
+    pros: [
+      "Drag-and-drop metadata cleaning",
+      "Privacy score per file",
+      "Secure multi-pass shredding",
+      "CLI for scripting",
+      "100% local — no uploads",
+    ],
+    cons: [
+      "SSD secure delete has known limitations",
+      "ExifTool recommended for full format support",
+      "Review shred actions — originals can be destroyed",
+    ],
+    links: {
+      website: "https://vassbrekke.no/vassdev/",
+      download: [
+        { label: "GitHub Releases", url: "https://github.com/N0L0g1c/PrivyFile/releases" },
+      ],
+      github: "https://github.com/N0L0g1c/PrivyFile",
+    },
+    tags: ["vassdev", "studio", "files", "metadata", "shredder", "desktop"],
+  },
+  {
     id: "vassdev-windows-privacy",
     name: "Windows 11 Privacy Tool",
     tagline: "Open-source GUI & CLI to harden Windows 10/11",

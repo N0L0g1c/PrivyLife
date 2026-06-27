@@ -70,7 +70,7 @@ Output goes to the `release/` folder.
 | Firewall | simplewall (Windows), OpenSnitch (Linux) |
 | OS | Linux Mint, Fedora, Windows hardening |
 | Analytics | privacy.sexy, Exodus Privacy |
-| VassDev Studio | PrivyLife, Windows Privacy Tool, Security Hardening, DeepCleaner |
+| VassDev Studio | PrivyLife, PrivyFile, Windows Privacy Tool, Security Hardening, DeepCleaner |
 
 ## Privacy Philosophy
 
